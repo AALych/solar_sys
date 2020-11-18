@@ -4,6 +4,18 @@
 from solar_objects import Star, Planet
 from solar_vis import DrawableObject
 
+red = (255, 0, 0)
+blue = (0, 0, 255)
+yellow = (255, 255, 0)
+green = (0, 255, 0)
+magenta = (255, 0, 255)
+cyan = (0, 255, 255)
+black = (0, 0, 0)
+white = (255, 255, 255)
+orange = (255, 165, 0)
+gray = (128, 128, 128)
+"""Список цветов для космический объектов"""
+
 
 def read_space_objects_data_from_file(input_filename):
     """Cчитывает данные о космических объектах из файла, создаёт сами объекты
@@ -63,6 +75,7 @@ def parse_star_parameters(line, star):
     star.y = float(star_parameters[5])
     star.Vx = float(star_parameters[6])
     star.Vy = float(star_parameters[7])
+    fix_color(star)
 
 
 def parse_planet_parameters(line, planet):
@@ -92,6 +105,7 @@ def parse_planet_parameters(line, planet):
     planet.y = float(planet_parameters[5])
     planet.Vx = float(planet_parameters[6])
     planet.Vy = float(planet_parameters[7])
+    fix_color(planet)
 
 
 def write_space_objects_data_to_file(output_filename, space_objects):
@@ -114,6 +128,28 @@ def write_space_objects_data_to_file(output_filename, space_objects):
             print(out_file, "%s %d %s %f" % (obj.type, obj.R, obj.color,
                                              obj.x, obj.y, obj.Vx, obj.Vy))
 
+
+def fix_color(body):
+    if body.color == 'red':
+        body.color = red
+    if body.color == 'blue':
+        body.color = blue
+    if body.color == 'yellow':
+        body.color = yellow
+    if body.color == 'green':
+        body.color = green
+    if body.color == 'magenta':
+        body.color = magenta
+    if body.color == 'cyan':
+        body.color = cyan
+    if body.color == 'black':
+        body.color = black
+    if body.color == 'white':
+        body.color = white
+    if body.color == 'gray':
+        body.color = gray
+    if body.color == 'orange':
+        body.color = orange
 
 
 if __name__ == "__main__":
