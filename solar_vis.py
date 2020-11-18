@@ -72,13 +72,13 @@ class Drawer:
 
         Параметры:
 
-        **figures** — кортеж объектов для рисования.
+        **figures** — список объектов для рисования.
         **ui** - поверхность
         """
         self.screen.fill((0, 0, 0))
         for figure in figures:
-            figure.draw(self.screen, figure.rescale())
-
+            x, y = figure.rescale()
+            figure.draw(self.screen, x, y)
         ui.blit()
         ui.update()
         pg.display.update()
@@ -104,4 +104,4 @@ class DrawableObject:
         **x** — экранная x-координата объекта.
         **y** - экранная y-координата объекта.
         """
-        pg.draw.circle(space, self.obj.color, (x, y), self.obj.rad)
+        pg.draw.circle(space, self.obj.color, (x, y), self.obj.R)
