@@ -27,6 +27,7 @@ scale_factor = 1
 def calculate_scale_factor(max_distance):
     """Вычисляет значение глобальной переменной **scale_factor** по данной
     характерной длине"""
+    global scale_factor
     scale_factor = 0.5 * min(window_height, window_width) / max_distance
     print('Scale factor:', scale_factor)
     return scale_factor
@@ -77,8 +78,8 @@ class Drawer:
         """
         self.screen.fill((0, 0, 0))
         for figure in figures:
-            x, y = figure.rescale()
-            figure.draw(self.screen, x, y)
+            x0, y0 = figure.rescale()
+            figure.draw(self.screen, x0, y0)
         ui.blit()
         ui.update()
         pg.display.update()
